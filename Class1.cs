@@ -11,7 +11,7 @@ namespace ConsoleApp4
         private int numerator;
         private int denominator;
 
-        public int Denominator { get => denominator; set => denominator = (denominator != 0) ? 1 : value; }
+        public int Denominator { get => denominator; set => denominator = value; }
         public int Numerator { get => numerator; set => numerator =  value; }
 
         public Fraction()
@@ -33,21 +33,37 @@ namespace ConsoleApp4
 
         public  static int Nod(int numerator, int denominator)
         {
+            int i = 0;
+            int nod = 0;
+            bool flag = false;
             numerator = Math.Abs(numerator);
             denominator = Math.Abs(denominator);
-            while (denominator != 0 && numerator != 0)
+            if (denominator == numerator)
+                return numerator;
+            else
             {
-                if (numerator % denominator > 0)
-                {
-                    var temp = numerator;
-                    numerator = denominator;
-                    denominator = temp % denominator;
-                }
-                else break;
+                if (numerator < denominator)
+                    for (i = numerator / 2; i > 2; i--)
+                    {
+                        if ((numerator % i == 0) && (denominator % i == 0))
+                        {                            
+                            flag = true;
+                            break;
+                        }                    
+                    }
+                else
+                    for (i = denominator / 2; i > 2; i--)
+                        if ((numerator % i == 0) && (denominator % i == 0))
+                        {                            
+                            flag = true;
+                            break;
+                        }
+                if (flag == false)
+                    return 0;
+                else
+                    return i;
             }
-            if (denominator != 0 && numerator != 0) return denominator;
-            return 0;
-
+            
         }
 
         public static Fraction operator +(Fraction f1, Fraction f2)
@@ -63,7 +79,7 @@ namespace ConsoleApp4
             if (f1.Denominator == f2.Denominator)
                 return new Fraction(f1.Numerator - f2.Numerator, f1.Denominator);
             else
-                return new Fraction(f1.Numerator * f2.Denominator - f1.Denominator * f2.Numerator, f1.Denominator * f2.Denominator);
+                return new Fraction(f1.Numerator * ((f1.Denominator * f2.Denominator) / f1.Denominator) - ((f1.Denominator * f2.Denominator) / f2.Denominator) * f2.Numerator, f1.Denominator * f2.Denominator);
         }
 
         public static Fraction operator *(Fraction f1,Fraction f2)

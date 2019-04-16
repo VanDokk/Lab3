@@ -11,10 +11,23 @@ namespace ConsoleApp4
         static void Main(string[] args)
         {
             Fraction[] fractions = new Fraction[5];
+            bool flag;
             for (int i = 0; i < 5; i++)
             {
-                Console.WriteLine("Введите числитель и знаменатель дроби");
-                fractions[i] = new Fraction(Convert.ToInt32(Console.ReadLine()), Convert.ToInt32(Console.ReadLine()));
+                flag = false;
+                do
+                {                    
+                    Console.WriteLine("Введите числитель и знаменатель дроби");
+                    try
+                    {
+                        fractions[i] = new Fraction(Convert.ToInt32(Console.ReadLine()), Convert.ToInt32(Console.ReadLine()));
+                        flag = true;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Не верно введена дробь");
+                    }
+                } while (flag == false);
             }
 
 
@@ -28,10 +41,11 @@ namespace ConsoleApp4
             {
                 result.Numerator /= s;
                 result.Denominator /= s;
+                Console.WriteLine(result.ToString());
             }
 
-            Console.WriteLine(result.ToString());
-            Console.WriteLine((double)result.Numerator / result.Denominator);
+            
+            //Console.WriteLine((double)result.Numerator / result.Denominator);
             Console.ReadLine();
 
 
