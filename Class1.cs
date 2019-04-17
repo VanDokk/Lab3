@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp4
+namespace WindowsFormsApp2
 {
     class Fraction
     {
@@ -12,7 +12,7 @@ namespace ConsoleApp4
         private int denominator;
 
         public int Denominator { get => denominator; set => denominator = value; }
-        public int Numerator { get => numerator; set => numerator =  value; }
+        public int Numerator { get => numerator; set => numerator = value; }
 
         public Fraction()
         {
@@ -24,14 +24,14 @@ namespace ConsoleApp4
             Denominator = 1;
             Numerator = numerator;
         }
-        public Fraction (int numerator, int denominator)
+        public Fraction(int numerator, int denominator)
         {
             Denominator = denominator;
             Numerator = numerator;
 
         }
 
-        public  static int Nod(int numerator, int denominator)
+        public static int Nod(int numerator, int denominator)
         {
             int i = 0;
             int nod = 0;
@@ -46,15 +46,15 @@ namespace ConsoleApp4
                     for (i = numerator / 2; i > 2; i--)
                     {
                         if ((numerator % i == 0) && (denominator % i == 0))
-                        {                            
+                        {
                             flag = true;
                             break;
-                        }                    
+                        }
                     }
                 else
                     for (i = denominator / 2; i > 2; i--)
                         if ((numerator % i == 0) && (denominator % i == 0))
-                        {                            
+                        {
                             flag = true;
                             break;
                         }
@@ -63,7 +63,7 @@ namespace ConsoleApp4
                 else
                     return i;
             }
-            
+
         }
 
         public static Fraction operator +(Fraction f1, Fraction f2)
@@ -82,7 +82,7 @@ namespace ConsoleApp4
                 return new Fraction(f1.Numerator * ((f1.Denominator * f2.Denominator) / f1.Denominator) - ((f1.Denominator * f2.Denominator) / f2.Denominator) * f2.Numerator, f1.Denominator * f2.Denominator);
         }
 
-        public static Fraction operator *(Fraction f1,Fraction f2)
+        public static Fraction operator *(Fraction f1, Fraction f2)
         {
             return new Fraction(f1.Numerator * f2.Numerator, f1.Denominator * f2.Denominator);
         }
@@ -96,31 +96,6 @@ namespace ConsoleApp4
         {
             return "\nFraction: " + Numerator + "\n        --------\n" + "           " + Denominator;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
